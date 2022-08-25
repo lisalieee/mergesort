@@ -1,0 +1,45 @@
+import java.util.*;
+public class SumOfSubset {
+final static int MAX=20;
+final static int s[]=new int[MAX];
+final static int x[]=new int[MAX];
+static int d;
+void sumofsub(int p,int k,int r)
+{
+int i;
+x[k]=1;
+if((p+s[k]==d))
+{
+for(i=1;i<=k;i++)
+if(x[i]==1)
+System.out.print("\t"+s[i]);
+System.out.println();
+}
+else if(p+s[k]+s[k+1]<=d)
+sumofsub(p+s[k],k+1,r-s[k]);
+if((p+r-s[k]>=d)&&(p+s[k+1]<=d))
+{
+x[k]=0;
+sumofsub(p,k+1,r-s[k]);
+}
+}
+public static void main(String args[])
+{
+int i,n,sum=0;
+Scanner in = new Scanner(System.in);
+SumOfSubset ss=new SumOfSubset();
+System.out.println("\n Enter the max no.:");
+n = in.nextInt();
+System.out.println("\n Enter the set in increasing order:");
+for(i=1;i<=n;i++)
+s[i] = in.nextInt();
+System.out.println("\n Enter the maximum subset values:");
+d = in.nextInt();
+for(i=1;i<=n;i++)
+sum=sum+s[i];
+if(sum<d || s[1]>d)
+System.out.println("\n No subset possible");
+else
+ss.sumofsub(0,1,sum);
+}
+}
