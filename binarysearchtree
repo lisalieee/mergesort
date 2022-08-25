@@ -1,0 +1,87 @@
+class Node { 
+    int key; 
+    Node left, right; 
+   
+    public Node(int data){ 
+        key = data; 
+        left = right = null; 
+    } 
+} 
+
+class BST_class { 
+   
+    Node root; 
+   
+    BST_class(){ 
+        root = null; 
+    } 
+   
+    
+    void postOrder(Node node)  { 
+        if (node == null) 
+            return; 
+   
+     
+        postOrder(node.left); 
+   
+        
+        postOrder(node.right); 
+   
+       
+        System.out.print(node.key + " "); 
+    } 
+
+    void inOrder(Node node)  { 
+        if (node == null) 
+            return; 
+      
+        inOrder(node.left); 
+   
+        System.out.print(node.key + " "); 
+   
+      
+        inOrder(node.right); 
+    } 
+   
+
+    void preOrder(Node node)  { 
+        if (node == null) 
+            return; 
+   
+      
+        System.out.print(node.key + " "); 
+        
+        preOrder(node.left); 
+        
+        preOrder(node.right); 
+    } 
+
+    void postOrder_traversal()  {    
+        postOrder(root);  } 
+    void inOrder_traversal() { 
+        inOrder(root);   } 
+    void preOrder_traversal() {
+        preOrder(root);  } 
+}
+class Main{
+    public static void main(String[] args) { 
+        //construct a BST
+        BST_class tree = new BST_class(); 
+        
+         tree.root = new Node(45); 
+        tree.root.left = new Node(10); 
+        tree.root.right = new Node(90); 
+        tree.root.left.left = new Node(7); 
+        tree.root.left.right = new Node(12); 
+        
+        
+        System.out.println("BST => PreOrder Traversal:"); 
+        tree.preOrder_traversal(); 
+        
+        System.out.println("\nBST => InOrder Traversal:"); 
+        tree.inOrder_traversal(); 
+       
+        System.out.println("\nBST => PostOrder Traversal:"); 
+        tree.postOrder_traversal(); 
+    } 
+}
